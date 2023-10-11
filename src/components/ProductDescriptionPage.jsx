@@ -1,31 +1,28 @@
-import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Progress } from "@nextui-org/react";
 import {
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Image,
 } from "@nextui-org/react";
-import { Getallpokemon } from "./exportData";
+import {  useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { detailsPage } from "../GlobalStore/reduxStore";
+
 
 function ProductDescriptionPage() {
+  const dispatch = useDispatch()
   let { animeName } = useParams();
-  // console.log(animeName);
-  const [details, setDetails] = useState();
+  const details =useSelector(state => state.details);
+useEffect(()=>{
+  if(!details?.length)
+  {  dispatch(detailsPage({animeName}))
+  } 
+},[])
 
-  useEffect(() => {
-    async function animeData() {
-      const res = await Getallpokemon(animeName);
-      console.log(res);
-      setDetails(res);
-    }
-    animeData();
-  }, [animeName]);
-
-  //   console.log("details",details);
-
+ 
   return (
     <>
       {details?.abilities ? (
