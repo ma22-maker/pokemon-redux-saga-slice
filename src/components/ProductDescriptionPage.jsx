@@ -15,7 +15,7 @@ import { detailsPage } from "../GlobalStore/reduxStore";
 function ProductDescriptionPage() {
   const dispatch = useDispatch()
   let { animeName } = useParams();
-  const details =useSelector(state => state.details);
+  const details =useSelector(state => state.AnimeData.details);
 useEffect(()=>{
   if(!details?.length)
   {  dispatch(detailsPage({animeName}))

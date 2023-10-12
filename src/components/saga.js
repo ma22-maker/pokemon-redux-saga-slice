@@ -1,7 +1,7 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { listingData,Data_FAILURE,listingData_SUCCESS ,detailsPage, detailsPage_SUCCESS} from '../GlobalStore/reduxStore';
+import { listingData,listingData_SUCCESS,detailsPage,detailsPage_SUCCESS,Data_FAILURE } from '../GlobalStore/reduxStore';
 import { getData,Getallpokemon } from './exportData';
-import { takeEvery, call, put } from 'redux-saga/effects';
+import {  call, put } from 'redux-saga/effects';
 
 function* fetchData() {
     console.log("inside saga function")
@@ -25,12 +25,12 @@ function* fetchData() {
 
 function* getAnimedetails(action)
 { try{
-  // console.log(action.payload.animeName);
+  console.log(action.payload.animeName);
   const animeName = action.payload.animeName;
   // console.log("inside 2nds aga")
   const detailsData = yield call(Getallpokemon,animeName)
   // console.log(detailsData);
-  yield put(detailsPage_SUCCESS(detailsData));
+yield put(detailsPage_SUCCESS({detailsData}));
 
 }catch(error)
 {

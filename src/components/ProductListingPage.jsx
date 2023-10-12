@@ -9,10 +9,10 @@ import { listingData } from "../GlobalStore/reduxStore";
 export default function ProductListingPage() {
   const dispatch = useDispatch() 
 const pokemondata = useSelector((state) => {
-  return state.data;
+  return state.AnimeData.data;
 })
 const loading = useSelector((state) => {
-  return state.loading;
+  return state.AnimeData.loading;
 })
 
 useEffect(()=>{
